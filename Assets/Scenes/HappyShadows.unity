@@ -890,7 +890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 775185622}
   m_Layer: 6
-  m_Name: Scene_3 (1)
+  m_Name: Scene_3_PaperObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3220,15 +3220,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3552674250294245960}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.5, z: -0, w: 0.8660254}
+  m_LocalPosition: {x: -0, y: 0, z: 3.897114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4058660424484601113}
   - {fileID: 3376322450907415713}
   - {fileID: 4148014253412915440}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4072550064027381212}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &412189598906457612
 MeshFilter:
@@ -4522,12 +4522,6 @@ MonoBehaviour:
   wall4: {fileID: 2168008099719692745}
   wall5: {fileID: 2463575718573776051}
   wall6: {fileID: 3987140518699949623}
-  useWall1: 0
-  useWall2: 0
-  useWall3: 1
-  useWall4: 0
-  useWall5: 0
-  useWall6: 0
 --- !u!4 &2094747658600115818
 Transform:
   m_ObjectHideFlags: 0
@@ -7044,15 +7038,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273997256356782237}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.61237246, y: 0.3535534, z: 0.3535534, w: 0.61237246}
+  m_LocalRotation: {x: 0, y: 0.5, z: 0, w: 0.8660254}
   m_LocalPosition: {x: -3.3749993, y: -0, z: -1.9485583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 400956709581890358}
   - {fileID: 4999685481900162426}
   - {fileID: 796644393616740134}
   m_Father: {fileID: 3332874555204578611}
-  m_LocalEulerAnglesHint: {x: -90, y: 60, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
 --- !u!1 &4077047367422643698
 GameObject:
   m_ObjectHideFlags: 0
@@ -11288,7 +11283,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.9607843, b: 0.8627451, a: 1}
-  m_Intensity: 0
+  m_Intensity: 80
   m_Range: 33.464878
   m_SpotAngle: 35.763992
   m_InnerSpotAngle: 1.8447268
@@ -12496,7 +12491,6 @@ SceneRoots:
   - {fileID: 5759010556589901562}
   - {fileID: 1502567847}
   - {fileID: 6147920483495972095}
-  - {fileID: 400956709581890358}
   - {fileID: 696347201}
   - {fileID: 99018527}
   - {fileID: 1542471765}
