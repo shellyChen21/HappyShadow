@@ -70,13 +70,13 @@ public class LittleGirlDecalController : MonoBehaviourPun
 
         // Debug.Log(hit.transform.name);
 
-        if (preCollider == hit.collider)
-        {
-            decalTarget.localRotation = Quaternion.Euler(0, 0, 0);
-
-            decalTarget.localPosition = new Vector3(decalTarget.localPosition.x, decalTarget.localPosition.y, 0);
-            return;
-        }
+        // if (preCollider == hit.collider)
+        // {
+        //     decalTarget.localRotation = Quaternion.Euler(0, 0, 0);
+        //
+        //     decalTarget.localPosition = new Vector3(decalTarget.localPosition.x, decalTarget.localPosition.y, 0);
+        //     return;
+        // }
 
 
         decalTarget.SetParent(hit.transform);
@@ -84,8 +84,10 @@ public class LittleGirlDecalController : MonoBehaviourPun
         decalTarget.localRotation = Quaternion.Euler(0, 0, 0);
 
         decalTarget.localPosition = new Vector3(decalTarget.localPosition.x, decalTarget.localPosition.y, 0);
+        
+        decalTarget.SetParent(null);
 
-        preCollider = hit.collider;
+        // preCollider = hit.collider;
     }
 
     void WearSkirt()

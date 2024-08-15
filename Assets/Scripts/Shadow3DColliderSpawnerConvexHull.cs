@@ -90,13 +90,7 @@ public class Shadow3DColliderSpawnerConvexHull : MonoBehaviour
             UpdateMeshCollider();
         }
     }
-
-    public ShapeTag GetShapeTag() => shapeTag;
-
-    public void DoSnap()
-    {
-        Debug.Log(shapeTag);
-    }
+    
 
     void UpdateRefRayCast()
     {
