@@ -56,7 +56,7 @@ public class WallManager : MonoBehaviour
 
             var originY = walls[index].transform.eulerAngles.y;
 
-            Tween.LightIntensity(lights[index], 40, time, Ease.InOutCubic);
+            Tween.LightIntensity(lights[index], 80, time, Ease.InOutCubic);
             Tween.Rotation(walls[index], new Vector3(-90, originY, 0), new Vector3(0, originY, 0), time,Ease.OutCubic);
         }
         else
