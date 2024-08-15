@@ -170,6 +170,12 @@ public class Shadow3DColliderSpawnerConvexHull : MonoBehaviour
 
 
         List<Vector3> hull = ComputeConvexHull(projectedVertices);
+        
+        if (hull.Count < 3)
+        {
+            shadowMesh.Clear();
+            return;
+        }
 
         Quaternion rotation = Quaternion.Euler(meshRotation);
         for (int i = 0; i < hull.Count; i++)
@@ -186,7 +192,12 @@ public class Shadow3DColliderSpawnerConvexHull : MonoBehaviour
 
     void UpdateMeshCollider()
     {
+        if (shadowMesh.vertices.Length < 3 )
+            return;
+        
         Mesh colliderMesh = GenerateColliderMeshWithThickness(shadowMesh, meshColliderThickness);
+        
+
         meshCollider.sharedMesh = colliderMesh;
     }
 
