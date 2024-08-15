@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using PrimeTween;
 using Shadow;
 using Shape;
 
@@ -50,8 +51,8 @@ public class Shadow3DColliderSpawnerConvexHull : MonoBehaviour
         shadowObject.layer = LayerMask.NameToLayer("Shape");
 
         MeshFilter meshFilter = shadowObject.AddComponent<MeshFilter>();
-        MeshRenderer meshRenderer = shadowObject.AddComponent<MeshRenderer>();
-        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        MeshRenderer shadowRenderer = shadowObject.AddComponent<MeshRenderer>();
+        shadowRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
         shadowMesh = new Mesh { name = "ShadowMesh" };
         meshFilter.mesh = shadowMesh;
@@ -60,17 +61,18 @@ public class Shadow3DColliderSpawnerConvexHull : MonoBehaviour
 
         if (meshMaterial)
         {
-            meshRenderer.material = meshMaterial;
+            shadowRenderer.material = meshMaterial;
         }
         else
         {
-            meshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+            shadowRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
             meshMaterial.name = "MaterialTemporary";
         }
 
         var shadowView = shadowObject.AddComponent<ShadowView>();
         shadowView.SetShapeTag(shapeTag);
     }
+
 
     private void FixedUpdate()
     {
@@ -90,7 +92,7 @@ public class Shadow3DColliderSpawnerConvexHull : MonoBehaviour
             UpdateMeshCollider();
         }
     }
-    
+
 
     void UpdateRefRayCast()
     {
@@ -196,9 +198,9 @@ public class Shadow3DColliderSpawnerConvexHull : MonoBehaviour
         int vertexCount = originalVertices.Length;
         Vector3[] vertices = new Vector3[vertexCount * 2];
         int[] triangles = new int[originalTriangles.Length * 2 + vertexCount * 6];
-        
+
         Vector3 zOffset = new Vector3(0, 0, meshColliderThickness / 2);
-        
+
         for (int i = 0; i < vertexCount; i++)
         {
             vertices[i] = originalVertices[i] + zOffset;

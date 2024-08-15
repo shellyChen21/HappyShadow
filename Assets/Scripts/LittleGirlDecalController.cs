@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Photon.Pun;
 using PrimeTween;
+using Shadow;
+using UnityEditor;
 
 public class LittleGirlDecalController : MonoBehaviourPun
 {
@@ -29,6 +32,15 @@ public class LittleGirlDecalController : MonoBehaviourPun
 
     private bool isCanMove = true;
 
+    private WallLightsManager wallLightsManager;
+    
+
+
+    private void Awake()
+    {
+        wallLightsManager = FindObjectOfType<WallLightsManager>();
+    }
+
     private void Update()
     {
         if (!PhotonNetwork.IsMasterClient)
@@ -41,7 +53,7 @@ public class LittleGirlDecalController : MonoBehaviourPun
 
     private void AutoMove()
     {
-        if(!isAutoMove)
+        if (!isAutoMove)
             return;
 
         isCanMove = false;
@@ -84,10 +96,33 @@ public class LittleGirlDecalController : MonoBehaviourPun
         decalTarget.localRotation = Quaternion.Euler(0, 0, 0);
 
         decalTarget.localPosition = new Vector3(decalTarget.localPosition.x, decalTarget.localPosition.y, 0);
-        
+
         decalTarget.SetParent(null);
 
-        // preCollider = hit.collider;
+        if (preCollider == hit.collider)
+            return;
+
+        preCollider = hit.collider;
+        var wallName = hit.transform.name;
+        var allShadow = FindObjectsOfType<ShadowView>();
+
+        Sequence.Create(0)
+            .ChainCallback(() =>
+            {
+                foreach (var shadow in allShadow)
+                {
+                    shadow.Hide();
+                }
+            })
+            .ChainDelay(.5f)
+            .ChainCallback(() => { wallLightsManager.ChangeLightPos(wallName); })
+            .ChainCallback(() =>
+            {
+                foreach (var shadow in allShadow)
+                {
+                    shadow.ShowUp();
+                }
+            });
     }
 
     void WearSkirt()
@@ -105,9 +140,9 @@ public class LittleGirlDecalController : MonoBehaviourPun
 
     void WalkAndJump()
     {
-        if(!isCanMove)
+        if (!isCanMove)
             return;
-        
+
         var input_V = Input.GetAxis("Vertical");
         var input_H = Input.GetAxis("Horizontal");
 

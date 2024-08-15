@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PrimeTween;
 using Shape;
 using UnityEngine;
 
@@ -11,10 +12,14 @@ namespace Shadow
 
         private MeshFilter meshFilter;
         private List<Vector3> shadowVertex = new();
+        
+        private MeshRenderer meshRenderer;
+        private static readonly int AlphaColor = Shader.PropertyToID("_Alpha");
 
-        private void Start()
+        private void Awake()
         {
             meshFilter = GetComponent<MeshFilter>();
+            meshRenderer = GetComponent<MeshRenderer>();
         }
 
         public void SetShapeTag(ShapeTag newTag) => shapeTag = newTag;
@@ -60,6 +65,18 @@ namespace Shadow
             }
 
             shadowVertex = VertexUtility.GetOtherVertex(transform, vertices);
+        }
+        
+        public void ShowUp()
+        {
+            var material = meshRenderer.material;
+            Tween.MaterialProperty(material, AlphaColor, 1, .5f);
+        }
+
+        public void Hide()
+        {
+            var material = meshRenderer.material;
+            Tween.MaterialProperty(material, AlphaColor, 0, .5f);
         }
 
         // private void OnDrawGizmos()
