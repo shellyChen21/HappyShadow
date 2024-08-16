@@ -20,6 +20,9 @@ public class CollisionPlaySound : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        var collider = GetComponent<BoxCollider>();
+        collider.enabled = false;
+
         if (decal != null)
             Tween.Custom(0, 1, 2, onValueChange: newValue => decal.fadeFactor = newValue);
         StartCoroutine(PlaySound());
