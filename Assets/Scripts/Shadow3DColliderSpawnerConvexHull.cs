@@ -246,7 +246,7 @@ public class Shadow3DColliderSpawnerConvexHull : MonoBehaviour
         colliderMesh.vertices = vertices;
         colliderMesh.triangles = triangles;
         colliderMesh.RecalculateNormals();
-        colliderMesh.RecalculateBounds();
+        // colliderMesh.RecalculateBounds();
 
         return colliderMesh;
     }

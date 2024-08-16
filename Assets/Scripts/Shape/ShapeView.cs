@@ -87,8 +87,6 @@ namespace Shape
                 var closestVertex = FindClosestVertex(vertex, shapeVertex);
 
                 var distance = Vector3.Distance(vertex, closestVertex);
-                
-                Debug.Log($"目标顶点位置: {vertex}, 最接近的顶点位置: {closestVertex}, 距离差: {distance}");
 
                 if (distance < matchRange)
                     continue;
