@@ -79,19 +79,19 @@ namespace Shadow
             Tween.MaterialProperty(material, AlphaColor, 0, .5f);
         }
 
-        // private void OnDrawGizmos()
-        // {
-        //     if (shadowVertex.Count == 0)
-        //     {
-        //         return;
-        //     }
-        //
-        //     for (var i = 0; i < shadowVertex.Count; i++)
-        //     {
-        //         // 在頂點位置繪製一個小球來表示頂點
-        //         Gizmos.DrawSphere(shadowVertex[i], 0.02f);
-        //         UnityEditor.Handles.Label(shadowVertex[i], i.ToString());
-        //     }
-        // }
+        private void OnDrawGizmos()
+        {
+            if (shadowVertex.Count == 0)
+            {
+                return;
+            }
+        
+            for (var i = 0; i < shadowVertex.Count; i++)
+            {
+                // 在頂點位置繪製一個小球來表示頂點
+                Gizmos.DrawSphere(shadowVertex[i], 0.02f);
+                UnityEditor.Handles.Label(shadowVertex[i], i.ToString());
+            }
+        }
     }
 }

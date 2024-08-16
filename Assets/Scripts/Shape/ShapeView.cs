@@ -20,12 +20,12 @@ namespace Shape
         private void Start()
         {
             meshRenderer = GetComponent<MeshRenderer>();
-            SetVertex();
         }
 
         private void Update()
         {
             Snap();
+            SetVertex();
         }
 
         private void Snap()
@@ -87,8 +87,10 @@ namespace Shape
                 var closestVertex = FindClosestVertex(vertex, shapeVertex);
 
                 var distance = Vector3.Distance(vertex, closestVertex);
+                
+                Debug.Log($"目标顶点位置: {vertex}, 最接近的顶点位置: {closestVertex}, 距离差: {distance}");
 
-                if (!(distance > matchRange))
+                if (distance < matchRange)
                     continue;
 
                 allVerticesInRange = false;
@@ -145,20 +147,20 @@ namespace Shape
         }
 
 
-        // private void OnDrawGizmos()
-        // {
-        //     Gizmos.DrawWireSphere(transform.position, radius);
-        //
-        //     if (shapeVertex.Count == 0)
-        //     {
-        //         return;
-        //     }
-        //
-        //     for (var i = 0; i < shapeVertex.Count; i++)
-        //     {
-        //         Gizmos.DrawSphere(shapeVertex[i], 0.02f);
-        //         UnityEditor.Handles.Label(shapeVertex[i], i.ToString());
-        //     }
-        // }
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(transform.position, radius);
+        
+            if (shapeVertex.Count == 0)
+            {
+                return;
+            }
+        
+            for (var i = 0; i < shapeVertex.Count; i++)
+            {
+                Gizmos.DrawSphere(shapeVertex[i], 0.02f);
+                UnityEditor.Handles.Label(shapeVertex[i], i.ToString());
+            }
+        }
     }
 }
